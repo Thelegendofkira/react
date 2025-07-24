@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo App with Divs and Array</title>
+</head>
+<body>
+
+    <h1>Todo List</h1>
+
+    <input type="text" id="todoInput" placeholder="Enter a new todo">
+    <button onclick="addTodo()">Add Todo</button>
+
+    <div id="todoContainer"></div>
+
+    <script>
+        // Array to store todo objects
+        let todos = [];
+
+        function renderTodos() {
+            const container = document.getElementById("todoContainer");
+            container.innerHTML = ""; // Clear previous content
+
+            todos.forEach((todo, index) => {
+                const todoDiv = document.createElement("div");
+                todoDiv.textContent = todo.text;
+
+                // Delete button
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "Delete";
+                deleteBtn.style.marginLeft = "10px";
+
+                deleteBtn.addEventListener("click", function() {
+                    deleteTodo(index);
+                });
+
+                todoDiv.appendChild(deleteBtn);
+                container.appendChild(todoDiv);
+            });
+        }
+
+        function addTodo() {
+            const input = document.getElementById("todoInput");
+            const text = input.value.trim();
+
+            if (text === "") {
+                alert("Please enter a todo.");
+                return;
+            }
+
+            // Push the new todo to the array
+            todos.push({ text: text });
+
+            // Re-render the UI
+            renderTodos();
+
+            // Clear input
+            input.value = "";
+        }
+
+        function deleteTodo(index) {
+            // Remove from array
+            todos.splice(index, 1);
+
+            // Re-render
+            renderTodos();
+        }
+    </script>
+
+</body>
+</html>
