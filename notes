@@ -1,0 +1,5 @@
+1.in using usestate the componenet which wraps it is the one which will be rendred and nothing else which are not related
+2.while using setinternval we cannot pass setcount of a usestate as a function because it does not pass a funciton it is a call so we wrap 
+it inside another funciotn and call it ueing set interval
+3.we donot need to add a usestate varaible to the dependency array of useeffect because we can extract the previous instance which has been used by the setcoutn method and update it instead of refering to the hard coded value of the coutn varible because when a useeffect is called
+without its dependecy the value is scrren shotted is used as its chages shoudl not effect the fucnion in the useeffect
